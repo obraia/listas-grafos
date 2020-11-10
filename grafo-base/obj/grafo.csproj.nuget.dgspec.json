@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo\\grafo.csproj": {}
+    "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo-base\\grafo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo\\grafo.csproj": {
+    "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo-base\\grafo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo\\grafo.csproj",
+        "projectUniqueName": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo-base\\grafo.csproj",
         "projectName": "grafo",
-        "projectPath": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo\\grafo.csproj",
+        "projectPath": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo-base\\grafo.csproj",
         "packagesPath": "C:\\Users\\Bryan.Diniz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo\\obj\\",
+        "outputPath": "C:\\Users\\Bryan.Diniz\\Documents\\Projetos\\estudo\\csharp\\Grafos\\grafo-base\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bryan.Diniz\\AppData\\Roaming\\NuGet\\NuGet.Config"

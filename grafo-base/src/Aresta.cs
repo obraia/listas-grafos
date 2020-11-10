@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace grafo
 {
-    public class Ligacao
+    public class Aresta
     {
+        public static int Count = 1;
+        public int Id { get; private set; }
         private Vertice Vertice;
         private int Peso;
 
-        public Ligacao(Vertice vertice, int peso)
+        public Aresta(Vertice vertice, int peso)
         {
+            this.Id = Count;
             this.Vertice = vertice;
             this.Peso = peso;
         }

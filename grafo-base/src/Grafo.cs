@@ -7,6 +7,11 @@ namespace grafo
     class Grafo
     {
         private List<Vertice> Vertices = new List<Vertice>();
+
+        public Grafo() {
+            Aresta.Count = 0;
+        }
+        
         public void InserirAresta(Vertice de, Vertice para, int peso)
         {
             // -> busca se os vértices já estão presentes no grafo
@@ -31,7 +36,8 @@ namespace grafo
             }
         }
 
-        public Vertice GetVertice(string id) {
+        public Vertice GetVertice(string id)
+        {
             return this.Vertices.Find(v => v.Id == id);
         }
 
@@ -86,6 +92,19 @@ namespace grafo
         public bool IsUnicursal()
         {
             return false;
+        }
+
+        public int getQuantidadeVertices()
+        {
+            return this.Vertices.Count;
+        }
+
+        public string listarVertices()
+        {
+            string vertices = "";
+            this.Vertices.ForEach(v => vertices += v.Id + " ");
+
+            return vertices;
         }
 
         public void ImprimirGrafo()

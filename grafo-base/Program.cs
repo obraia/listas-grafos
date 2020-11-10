@@ -10,10 +10,11 @@ namespace grafo
             Grafo grafo = new Grafo();
 
             string[] linhas = {
-                "1;2;4;1",
-                "1;2;11;-1",
-                "1;3;7;1",
-                "2;3;10;-1"
+                "1;2;4",
+                "2;1;4",
+                "1;2;11",
+                "1;3;7",
+                "15;2;10"
              };
 
             for (int i = 0; i < linhas.Length; i++)
@@ -24,15 +25,26 @@ namespace grafo
                 Vertice v2 = new Vertice(aux[1]);
                 int peso = int.Parse(aux[2]);
 
-                if (aux[3] == "1") grafo.InserirAresta(v1, v2, peso);
+                if(aux.Length == 3) {
+                    grafo.InserirAresta(v1, v2, peso);
+                    grafo.InserirAresta(v2, v1, peso);        
+                }
+                else if (aux[3] == "1") grafo.InserirAresta(v1, v2, peso);
                 else grafo.InserirAresta(v2, v1, peso);
+
+                Aresta.Count++;
             }
 
-            // grafo.ImprimirGrafo();
+            grafo.ImprimirGrafo();
+            Vertice verticeA = grafo.GetVertice("15");
+           
+            Console.WriteLine(verticeA.GetGrau());
+            Console.WriteLine(grafo.GetGrau(verticeA));
 
-            Vertice v3 = grafo.GetVertice("1");
+            Console.WriteLine(grafo.getQuantidadeVertices());
 
-            Console.WriteLine(v3);
+            // Vertice v3 = grafo.GetVertice("1");
+            // Console.WriteLine(v3);
         }
     }
 }
