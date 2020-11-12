@@ -5,14 +5,13 @@ namespace grafo
 {
     public class Aresta
     {
-        public static int Count = 1;
+        public static int IdCount = 1;
         public int Id { get; private set; }
-        private Vertice Vertice;
-        private int Peso;
+        public Vertice Vertice { get; private set; }
+        public int Peso { get; private set; }
 
-        public Aresta(Vertice vertice, int peso)
-        {
-            this.Id = Count;
+        public Aresta(Vertice vertice, int peso) {
+            this.Id = IdCount;
             this.Vertice = vertice;
             this.Peso = peso;
         }
@@ -21,8 +20,7 @@ namespace grafo
             return Vertice.Id;
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return this.Vertice.Id + " : " + this.Peso;
         }
     }
