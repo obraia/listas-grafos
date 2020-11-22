@@ -1,75 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace grafo {
+namespace grafo
+{
 
-    class Program {
-        
-        static void Main(string[] args) {
-            Grafo grafo = new Grafo();
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
 
             string[] linhas = {
-                "v7;v1;10",
+                "v1;v2;10;1",
+                "v1;v3;10;-1",
+                "v1;v4;10;1",
+                "v1;v5;10;-1",
 
-                "v1;v2;10",
-                "v1;v3;10",
-                "v1;v4;10",
-                "v1;v5;10",
-                "v2;v3;10",
-                "v2;v4;10",
-                "v2;v5;10",
-                "v3;v4;10",
-                "v3;v5;10",
-                "v4;v5;10",
-
-                // "v6;v12;10",
-
-                // "v8;v9;10",
-                // "v9;v10;10",
-                // "v10;v11;10",
+                "v6;v5;10;-1",
+                "v6;v4;10;-1",
+                "v6;v7;10;1",
+                "v6;v8;10;-1",
              };
 
-            for (int i = 0; i < linhas.Length; i++) {
-                string[] aux = linhas[i].Split(';');
+            Grafo grafo = Grafo.CriarGrafo(linhas);
 
-                Vertice v1 = new Vertice(aux[0]);
+            grafo.OrdernarVertices("a ->");
 
-                // -> Tratar vértices isolados
-                if(aux.Length > 1) {
-                    Vertice v2 = new Vertice(aux[1]);
-                    int peso = int.Parse(aux[2]);
 
-                    if (aux.Length == 3) {
-                        grafo.InserirAresta(v1, v2, peso);
-                        // -> Tratar arestas paralelas, caso tiver os mesmo id não adicona a segunda aresta
-                        if (v1.Id != v2.Id) grafo.InserirAresta(v2, v1, peso);
-                    } 
-                    else if (aux[3] == "1") grafo.InserirAresta(v1, v2, peso);
-                    else grafo.InserirAresta(v2, v1, peso);
+            // grafo.RemoverVertice(grafo.GetVertice("v1"));
 
-                    Aresta.IdCount++;
-                } 
-                else grafo.InserirVertice(v1);
-            }
-
-            grafo.ordernarVertices("a ->");
-
-            // grafo.imprimirVertices();
+            // grafo.ImprimirVertices();
 
             // grafo.ImprimirMatriz();
             // Console.WriteLine();
-            
+
             // grafo.ImprimirGrafo();
             // Console.WriteLine();
 
-            // Console.WriteLine("Quantidade total de vértices:" + grafo.getQuantidadeVertices());
+            // grafo.GetCutVertices().ForEach(v => Console.WriteLine(v.Id));
+
+            Vertice v1 = grafo.GetVertice("v1");
+            Vertice v6 = grafo.GetVertice("v6");
+
+            System.Console.WriteLine(grafo.GetGrau(v1));
+            System.Console.WriteLine(grafo.GetGrauEntrada(v1));
+            System.Console.WriteLine(grafo.GetGrauEntrada(v6));
+            System.Console.WriteLine(grafo.GetGrau(v6));
+            // grafo.ImprimirMatriz();
+
+            // grafo.ImprimirGrafo();
+
+            // Console.WriteLine("Quantidade total de vértices:" + grafo.GetQuantidadeVertices());
             // Console.WriteLine("O grafo é completo: " + (grafo.IsCompleto() ? "Sim" : "Não"));
 
-            // System.Console.WriteLine(grafo.GetVertice("v2"));
-            // System.Console.WriteLine(grafo.GetVertice("v1"));
-            // System.Console.WriteLine(grafo.GetVertice("v3"));
+            // System.Console.WriteLine("v1 " + grafo.GetVertice("v1").GetGrau());
+            // System.Console.WriteLine("v2 " + grafo.GetVertice("v2").GetGrau());
+            // System.Console.WriteLine("v3 " + grafo.GetVertice("v3").GetGrau());
+            // System.Console.WriteLine("v4 " + grafo.GetVertice("v4").GetGrau());
+            // System.Console.WriteLine("v5 " + grafo.GetVertice("v5").GetGrau());
 
-            System.Console.WriteLine(grafo.IsConexo()); 
+            // System.Console.WriteLine(grafo.IsEuleriano());
+            // System.Console.WriteLine(grafo.IsUnicursal());
         }
     }
 }

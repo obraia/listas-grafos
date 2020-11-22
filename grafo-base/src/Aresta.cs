@@ -9,18 +9,20 @@ namespace grafo
         public int Id { get; private set; }
         public Vertice Vertice { get; private set; }
         public int Peso { get; private set; }
-
-        public Aresta(Vertice vertice, int peso) {
+        public string TipoAresta { get; set; }
+        public Aresta(Vertice vertice, int peso)
+        {
             this.Id = IdCount;
             this.Vertice = vertice;
             this.Peso = peso;
         }
 
-        public string getVerticeId() {
-            return Vertice.Id;
+        public void ResetAresta() {
+            this.TipoAresta = null;
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return this.Vertice.Id + " : " + this.Peso;
         }
     }
