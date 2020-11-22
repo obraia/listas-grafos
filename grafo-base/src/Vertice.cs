@@ -7,22 +7,33 @@ namespace grafo
 
     public class Vertice
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
         public List<Aresta> ListaAdjacencia = new List<Aresta>();
         public string Cor { get; private set; }
         public int TempoEntrada { get; set; }
         public int TempoSaida { get; set; }
-        
+        public Vertice Chefe { get; set; }
+
 
         public Vertice(string id)
         {
             this.Id = id;
             this.TempoEntrada = 0;
             this.TempoSaida = 0;
+            this.Chefe = this;
+        }
+
+        public Vertice(string id, Vertice chefe)
+        {
+            this.Id = id;
+            this.TempoEntrada = 0;
+            this.TempoSaida = 0;
+            this.Chefe = this;
         }
 
         public void AdicionarAdjacente(Vertice vertice, int peso)
         {
+            // -> Adiciona uma nova aresta na lista de adjacência
             this.ListaAdjacencia.Add(new Aresta(vertice, peso));
         }
 
@@ -30,6 +41,17 @@ namespace grafo
         {
             // -> Remove todas as incidências de v na lista de adjacência
             this.ListaAdjacencia.RemoveAll(a => a.Vertice.Id == v.Id);
+        }
+
+        public void OrdenarAdjacentes() {
+            int aux;
+
+            if(int.TryParse(this.Id, out aux)) {
+                this.ListaAdjacencia.Sort((a1, a2) => int.Parse(a1.Vertice.Id) - int.Parse(a2.Vertice.Id));
+            }
+            else {
+                this.ListaAdjacencia.Sort((a1, a2) => a1.Vertice.Id.CompareTo(a2.Vertice.Id));
+            }
         }
 
         public int GetGrau()
@@ -79,7 +101,8 @@ namespace grafo
             }
         }
 
-        public void ResetTempos() {
+        public void ResetTempos()
+        {
             this.TempoEntrada = 0;
             this.TempoSaida = 0;
         }
@@ -97,6 +120,11 @@ namespace grafo
         public void SetCorPreto()
         {
             this.Cor = "Preto";
+        }
+
+        public string GetTempos()
+        {
+            return this.Id = ": E: " + this.TempoEntrada + "S: " + this.TempoSaida;
         }
 
         public List<string> GetArestas()

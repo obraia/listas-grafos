@@ -41,6 +41,7 @@ namespace grafo
             }
 
             grafo.ArquivoGerador = linhas;
+            grafo.OrdernarVertices();
 
             return grafo;
         }
@@ -134,13 +135,20 @@ namespace grafo
             return this.Vertices.Any(v => v.HasLoop());
         }
 
-
         public bool HasCiclo()
         {
+            if(this.HasLoop() && this.IsConexo()) return false;
+            
             BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
             buscaProfundidade.Buscar(this);
             return this.Vertices.Any(v => v.ListaAdjacencia.Any(a => a.TipoAresta == "Retorno"));
         }
+
+        // public bool HasCicloND()
+        // {
+        //     int quantidadeArestas = this.Vertices.ForEach(v => v.ListaAdjacencia.Count);
+        //     return this.Vertices.Count == 
+        // }
 
         public bool IsRegular()
         {
@@ -210,6 +218,19 @@ namespace grafo
             return cutVertices;
         }
 
+        public Grafo GetAGMPrim(Vertice v) {
+            return null;
+        }
+
+        public string GetAGMKruskal(Vertice v)
+        {
+            if(this.IsConexo())
+
+            Kruskal kruskal = new Kruskal();
+            kruskal.GetAGM(this, v);
+            return null;
+        }
+
         public void ResetCoresVertices()
         {
             this.Vertices.ForEach(v => v.SetCorBranco());
@@ -225,32 +246,20 @@ namespace grafo
             this.Vertices.ForEach(v => v.ListaAdjacencia.ForEach(a => a.ResetAresta()));
         }
 
-        public void OrdernarVertices(string tipoOrdenamento)
+        public void OrdernarVertices()
         {
-            tipoOrdenamento = tipoOrdenamento.ToLower();
+            int aux;
 
-            switch (tipoOrdenamento)
+            if (int.TryParse(this.Vertices[0].Id, out aux))
             {
-                case "a ->":
-                    this.Vertices.Sort((v1, v2) => v1.Id.CompareTo(v2.Id));
-                    break;
-
-                case "a <-":
-                    this.Vertices.Sort((v1, v2) => v2.Id.CompareTo(v1.Id));
-                    break;
-
-                case "1 ->":
-                    this.Vertices.Sort((v1, v2) => int.Parse(v1.Id) - int.Parse(v2.Id));
-                    break;
-
-                case "1 <-":
-                    this.Vertices.Sort((v1, v2) => int.Parse(v2.Id) - int.Parse(v1.Id));
-                    break;
-
-                default:
-                    Console.WriteLine("Parâmetro de orndenação inválido");
-                    break;
+                this.Vertices.Sort((v1, v2) => int.Parse(v1.Id) - int.Parse(v2.Id));
             }
+            else
+            {
+                this.Vertices.Sort((v1, v2) => v1.Id.CompareTo(v2.Id));
+            }
+
+            this.Vertices.ForEach(v => v.OrdenarAdjacentes());
         }
 
         public void ImprimirVertices()
@@ -264,7 +273,21 @@ namespace grafo
             this.Vertices.ForEach(v => Console.Write(v));
         }
 
-        public void ImprimirMatriz()
+        public void ImprimirMatrizAdjacencia()
+        {
+            Vertices.ForEach(v1 =>
+            {
+                Vertices.ForEach(v2 =>
+                {
+                    String aux = String.Join(",", this.GetPesos(v1, v2));
+                    aux = (aux == "") ? "0" : aux;
+                    Console.Write($"{(v1.IsAdjacente(v2) ? 1: 0)},");
+                });
+                Console.WriteLine();
+            });
+        }
+
+        public void ImprimirMatrizPeso()
         {
             Vertices.ForEach(v1 =>
             {

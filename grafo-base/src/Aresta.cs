@@ -23,7 +23,7 @@ namespace grafo
 
         public override string ToString()
         {
-            return this.Vertice.Id + " : " + this.Peso;
+            return this.Vertice.Id + " : " + this.Peso + " -> " + this.TipoAresta;
         }
     }
 }
