@@ -6,6 +6,7 @@ namespace grafo
 {
     class Kruskal
     {
+        // -> Retorna Arvore Geradora Mínima usando o algoritmo de Kruskal
         public ArestaK GetAGM(Grafo grafo, Vertice v1)
         {
             List<ArestaK> arestasK = new List<ArestaK>();
@@ -30,16 +31,14 @@ namespace grafo
                 });
             });
 
+            // -> Ordena elementos a partir do peso
             arestasK.Sort((a1, a2) => a1.Peso - a2.Peso);
-
-            // arestasK.ForEach(a => System.Console.WriteLine(a));
 
             arestasK.RemoveAll(a => a.Id == arestaInicial.Id);
             arestasK.Insert(0, arestaInicial);
 
             arestasK.ForEach(a =>
             {
-
                 if (grafo.GetQuantidadeVertices() != Aresta.IdCount)
                 {
 

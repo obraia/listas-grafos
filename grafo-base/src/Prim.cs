@@ -6,6 +6,7 @@ namespace grafo
 {
     class Prim
     {
+        // -> Retorna Arvore Geradora Mínima usando o algoritmo de Prim
         public void GetAGM(Grafo grafo, Vertice v1)
         {
             List<ArestaK> arestasK = new List<ArestaK>();
@@ -29,6 +30,7 @@ namespace grafo
                 });
             });
 
+            // -> Ordena elementos a partir do peso
             arestasK.Sort((a1, a2) => a1.Peso - a2.Peso);
 
             arestasK.RemoveAll(a => a.Id == arestaInicial.Id);
@@ -45,7 +47,6 @@ namespace grafo
 
                 grafoAGM.Vertices.ForEach(v =>
                 {
-                    // int index = arestasK.FindIndex
                     ArestaK aux = arestasK.Find(a => a.V1.Id == v.Id || a.V2.Id == v.Id);
                     
                     if(!(aux is null)) menorPesos.Add(aux);
@@ -55,10 +56,8 @@ namespace grafo
 
                 ArestaK auxAresta = menorPesos[0];
 
-
                 if (auxAresta.V1.Chefe.Id != auxAresta.V2.Chefe.Id)
                 {
-
                     if (auxAresta.V2.Chefe != auxAresta.V2)
                     {
                         auxAresta.V1.Chefe = auxAresta.V2.Chefe;

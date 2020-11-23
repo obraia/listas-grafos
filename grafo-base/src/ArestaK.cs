@@ -11,6 +11,7 @@ namespace grafo
         public int Peso;
         public Vertice V2;
 
+        // -> Classe auxiliar para algoritmos de Kruskal e Prim
         public ArestaK(Vertice v1, Vertice v2, int peso, int id)
         {
             this.V1 = v1;

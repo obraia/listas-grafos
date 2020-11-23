@@ -9,6 +9,7 @@ namespace grafo
     {
         public static int TempoDescoberta = 1;
 
+        // -> Da inicio a busca em profundidade
         public int Buscar(Grafo grafo)
         {
             grafo.ResetCoresVertices();
@@ -30,13 +31,14 @@ namespace grafo
             return componentes;
         }
 
+        // -> Método para realizar visitas aos vértices 
         public void Visitar(Vertice v)
         {
             v.TempoEntrada = TempoDescoberta;
             TempoDescoberta++;
             v.SetCorCinza();
 
-            Console.WriteLine(v.Id + " -> Entrada: " + v.TempoEntrada);
+            // Console.WriteLine(v.Id + " -> Entrada: " + v.TempoEntrada);
 
             v.ListaAdjacencia.ForEach(a =>
             {
@@ -51,9 +53,10 @@ namespace grafo
             TempoDescoberta++;
             v.SetCorPreto();
 
-            System.Console.WriteLine(v.Id + " -> Saída: " + v.TempoSaida);
+            // System.Console.WriteLine(v.Id + " -> Saída: " + v.TempoSaida);
         }
 
+        // -> Método para classificar as arestas
         public void ClassificarAresta(Vertice v, Aresta a)
         {
             if (v.Cor == "Cinza" && a.Vertice.Cor == "Branco")
