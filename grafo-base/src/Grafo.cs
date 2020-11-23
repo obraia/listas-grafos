@@ -108,8 +108,9 @@ namespace grafo
         {
             int count = 0;
 
-            this.Vertices.ForEach(v => {
-                if(v != v1 && v.IsAdjacente(v1)) count++;
+            this.Vertices.ForEach(v =>
+            {
+                if (v != v1 && v.IsAdjacente(v1)) count++;
             });
 
             return count;
@@ -137,18 +138,12 @@ namespace grafo
 
         public bool HasCiclo()
         {
-            if(this.HasLoop() && this.IsConexo()) return false;
-            
+            if (this.HasLoop() && this.IsConexo()) return false;
+
             BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
             buscaProfundidade.Buscar(this);
             return this.Vertices.Any(v => v.ListaAdjacencia.Any(a => a.TipoAresta == "Retorno"));
         }
-
-        // public bool HasCicloND()
-        // {
-        //     int quantidadeArestas = this.Vertices.ForEach(v => v.ListaAdjacencia.Count);
-        //     return this.Vertices.Count == 
-        // }
 
         public bool IsRegular()
         {
@@ -209,26 +204,39 @@ namespace grafo
             {
                 Grafo auxGrafo = Grafo.CriarGrafo(this.ArquivoGerador);
                 Vertice auxVertice = auxGrafo.GetVertice(v.Id);
-                
+
                 auxGrafo.RemoverVertice(auxVertice);
 
-                if(!auxGrafo.IsConexo()) cutVertices.Add(v);
+                if (!auxGrafo.IsConexo()) cutVertices.Add(v);
             });
 
             return cutVertices;
         }
 
-        public Grafo GetAGMPrim(Vertice v) {
-            return null;
+        public void GetAGMPrim(Vertice v)
+        {
+            this.ResetVerticesChefe();
+
+            Prim prim = new Prim();
+
+            if (this.IsConexo()) prim.GetAGM(this, v);
+            else
+            {
+                System.Console.WriteLine("Esse grafo é desconexo, portanto não é possível gerar sua AGM");
+            }
         }
 
-        public string GetAGMKruskal(Vertice v)
+        public void GetAGMKruskal(Vertice v)
         {
-            if(this.IsConexo())
+            this.ResetVerticesChefe();
 
             Kruskal kruskal = new Kruskal();
-            kruskal.GetAGM(this, v);
-            return null;
+
+            if (this.IsConexo()) kruskal.GetAGM(this, v);
+            else
+            {
+                System.Console.WriteLine("Esse grafo é desconexo, portanto não é possível gerar sua AGM");
+            }
         }
 
         public void ResetCoresVertices()
@@ -244,6 +252,11 @@ namespace grafo
         public void ResetTipoArestas()
         {
             this.Vertices.ForEach(v => v.ListaAdjacencia.ForEach(a => a.ResetAresta()));
+        }
+
+        public void ResetVerticesChefe()
+        {
+            this.Vertices.ForEach(v => v.Chefe = v);
         }
 
         public void OrdernarVertices()
@@ -281,7 +294,7 @@ namespace grafo
                 {
                     String aux = String.Join(",", this.GetPesos(v1, v2));
                     aux = (aux == "") ? "0" : aux;
-                    Console.Write($"{(v1.IsAdjacente(v2) ? 1: 0)},");
+                    Console.Write($"{(v1.IsAdjacente(v2) ? 1 : 0)},");
                 });
                 Console.WriteLine();
             });

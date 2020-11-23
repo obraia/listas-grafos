@@ -6,34 +6,78 @@ namespace grafo
 {
     class Prim
     {
-        public Grafo GetAGM(Grafo grafo, Vertice v1)
+        public void GetAGM(Grafo grafo, Vertice v1)
         {
-            List<Vertice> conjuntoArvore = new List<Vertice>();
-            Grafo GrafoAGM = new Grafo();
-
-            GrafoAGM.InserirVertice(new Vertice(v1.Id));
+            List<ArestaK> arestasK = new List<ArestaK>();
+            Grafo grafoAGM = new Grafo();
 
             int pesoMinimo = v1.ListaAdjacencia.Min(a => a.Peso);
-            Vertice verticeMinimo = v1.ListaAdjacencia.Find(a => a.Peso == pesoMinimo).Vertice;
+            Aresta adjV1Minimo = v1.ListaAdjacencia.Find(a => a.Peso == pesoMinimo);
 
-            GrafoAGM.Vertices.ForEach(v => {
-                
+            ArestaK arestaInicial = new ArestaK(v1, adjV1Minimo.Vertice, adjV1Minimo.Peso, adjV1Minimo.Id);
+
+            // -> Agrupando todas as arestas do grafo
+            grafo.Vertices.ForEach(v =>
+            {
+                v.ListaAdjacencia.ForEach(a =>
+                {
+                    // -> Não adiciona arestas de mesmo Id
+                    if (!arestasK.Any(a1 => a1.Id == a.Id))
+                    {
+                        arestasK.Add(new ArestaK(v, a.Vertice, a.Peso, a.Id));
+                    }
+                });
             });
 
-            grafo.Vertices.ForEach(v => {
+            arestasK.Sort((a1, a2) => a1.Peso - a2.Peso);
 
-            });
-
-
-            v1.ListaAdjacencia.GroupBy(v => v.Peso);
+            arestasK.RemoveAll(a => a.Id == arestaInicial.Id);
+            arestasK.Insert(0, arestaInicial);
 
 
-            return null;
-        }
+            // -> Inserir aresta inicial
+            grafoAGM.InserirAresta(arestaInicial.V1, arestaInicial.V2, arestaInicial.Peso);
+            Aresta.IdCount++;
 
-        public void Visitar(Vertice v)
-        {
-            
+            while (grafoAGM.Vertices.Count != grafo.Vertices.Count)
+            {
+                List<ArestaK> menorPesos = new List<ArestaK>();
+
+                grafoAGM.Vertices.ForEach(v =>
+                {
+                    // int index = arestasK.FindIndex
+                    ArestaK aux = arestasK.Find(a => a.V1.Id == v.Id || a.V2.Id == v.Id);
+                    
+                    if(!(aux is null)) menorPesos.Add(aux);
+                });
+
+                menorPesos.Sort((a1, a2) => a1.Peso - a2.Peso);
+
+                ArestaK auxAresta = menorPesos[0];
+
+
+                if (auxAresta.V1.Chefe.Id != auxAresta.V2.Chefe.Id)
+                {
+
+                    if (auxAresta.V2.Chefe != auxAresta.V2)
+                    {
+                        auxAresta.V1.Chefe = auxAresta.V2.Chefe;
+                    }
+                    else
+                    {
+                        auxAresta.V2.Chefe = auxAresta.V1.Chefe;
+                    }
+
+                    System.Console.WriteLine(auxAresta);
+
+                    grafoAGM.InserirAresta(auxAresta.V1, auxAresta.V2, auxAresta.Peso);
+                    grafoAGM.InserirAresta(auxAresta.V2, auxAresta.V1, auxAresta.Peso);
+
+                    Aresta.IdCount++;
+                }
+
+                arestasK.Remove(auxAresta);
+            }
         }
     }
 }

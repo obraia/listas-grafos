@@ -34,24 +34,24 @@ namespace grafo
                 // "3;1;10",
                 // "1;5;10",
 
-                "a;d;6",
-                "d;b;15",
-                "d;e;6",
-                "b;c;3",
-                "b;e;1",
-                "e;c;2",
+                // "a;d;6",
+                // "d;b;15",
+                // "d;e;6",
+                // "b;c;3",
+                // "b;e;1",
+                // "e;c;2",
 
-                // "1;2;9",
-                // "1;4;6",
-                // "2;3;8",
-                // "2;4;15",
-                // "4;5;6",
-                // "4;6;11",
-                // "2;5;5",
-                // "5;3;6",
-                // "5;7;7",
-                // "4;7;8",
-                // "6;7;8",
+                "a;b;9",
+                "a;d;6",
+                "b;c;8",
+                "b;d;15",
+                "d;e;6",
+                "d;f;11",
+                "b;e;5",
+                "e;c;6",
+                "e;g;7",
+                "d;g;8",
+                "f;g;8",
 
             };
 
@@ -60,12 +60,10 @@ namespace grafo
             // System.Console.WriteLine(grafo.IsConexo());
             // System.Console.WriteLine(grafo.HasCiclo());
 
-            grafo.GetAGMKruskal(grafo.GetVertice("a"));
-
             // grafo.ImprimirGrafo();
+            // grafo.GetAGMPrim(grafo.GetVertice("a"));
             System.Console.WriteLine();
-            grafo.ImprimirMatrizAdjacencia();
-            // grafo.ImprimirVertices();
+            grafo.GetAGMKruskal(grafo.GetVertice("b"));
 
 
             // grafo.RemoverVertice(grafo.GetVertice("v1"));
