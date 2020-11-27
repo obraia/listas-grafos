@@ -1,0 +1,17 @@
+Integrantes: Bryan Diniz, Débora Oliveira, Isabela Fonseca, Maria Luiza e Yuri Nabaia.
+
+
+
+
+Como executar:
+
+Em relação aos arquivos: 
+ 1-Ir na pasta files:
+ 2-Colar o(s) arquivo(s) para teste
+ 3-No program, substituir o valor da variavel "nomearquivo" com o nome do arquivo colocado dentro da pasta files.
+
+Para executar: 
+ Utilizar Visual Studio ou o VS code.
+ 1-No program há duas funções comentadas, descomente a que for ser usada(RelatorioDirigido ou RelatorioNaoDirecionado)
+ 2-Susbstituir valores de V1,V2,VK,VP de acordo com os testes a serem feitos. Vk e Vp são os vértices iniciais dos algoritmos de Kruskan e Prim
+ 3-Rodar

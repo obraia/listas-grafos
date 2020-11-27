@@ -5,71 +5,72 @@ using System.Linq;
 
 namespace grafo
 {
-    
+
     class Program
     {
 
         static void Main(string[] args)
         {
+            // -> DESCOMENTE A CHAMADA PARA TESTAR
 
-            string[] linhas =  File.ReadLines("./files/ArquivosNaoDirigidos/completo3.txt").ToArray();
+            RelatorioDirecionado();
+            RelatorioNaoDirecionado();
+        }
 
-            // string[] linhas = {
-
-            //     // "a;b;10;1",
-            //     // "a;c;10;1",
-            //     // "a;d;10;1",
-            //     // "c;b;10;1",
-            //     // "c;d;10;1",
-            //     // "e;d;10;1",
-
-            //     // "2;4;60",
-            //     // "2;5;70",
-            //     // "3;4;80",
-            //     // "3;5;90",
-            //     // "1;2;10",
-            //     // "1;3;20",
-            //     // "1;4;30",
-            //     // "1;5;40",
-            //     // "2;3;50",
-
-            //     // "3;2;10",
-            //     // "3;4;10",
-            //     // "3;1;10",
-            //     // "1;5;10",
-
-            //     // "a;d;6",
-            //     // "d;b;15",
-            //     // "d;e;6",
-            //     // "b;c;3",
-            //     // "b;e;1",
-            //     // "e;c;2",
-
-            //     "a;b;9",
-            //     "a;d;6",
-            //     "b;c;8",
-            //     "b;d;15",
-            //     "d;e;6",
-            //     "d;f;11",
-            //     "b;e;5",
-            //     "e;c;6",
-            //     "e;g;7",
-            //     "d;g;8",
-            //     "f;g;8",
-
-            // };
+        public static void RelatorioDirecionado()
+        {
+            string nomeArquivo = "Dirigido1.txt";
+            string[] linhas = File.ReadLines("./files/ArquivosDirigidos/" + nomeArquivo).ToArray();
 
             Grafo grafo = Grafo.CriarGrafo(linhas);
-            Grafo grafo2 = Grafo.CriarGrafo(linhas);
 
-            grafo.GetAGMKruskal(grafo.GetVertice("1"));
-            System.Console.WriteLine();
-            grafo.GetAGMPrim(grafo2.GetVertice("1"));
+            Vertice v1 = grafo.GetVertice("1");
+            Vertice v2 = grafo.GetVertice("2");
 
-            grafo.ImprimirMatrizAdjacencia();
-
-            
-
+            Console.WriteLine("O vértice {0} tem grau de entrada: {1}", v1.Id, grafo.GetGrauEntrada(v1));
+            Console.WriteLine("O vértice {0} tem grau de saída: {1}", v1.Id, grafo.GetGrau(v2));
+            Console.WriteLine("O grafo possui ciclo: " + grafo.HasCiclo());
         }
+
+        public static void RelatorioNaoDirecionado()
+        {
+            string nomeArquivo = "completo3.txt";
+            string[] linhas = File.ReadLines("./files/ArquivosNaoDirigidos/" + nomeArquivo).ToArray();
+
+            Grafo grafo = Grafo.CriarGrafo(linhas);
+
+            Grafo grafoP = Grafo.CriarGrafo(linhas);
+            Grafo grafoK = Grafo.CriarGrafo(linhas);
+
+            Vertice v1 = grafo.GetVertice("1");
+            Vertice v2 = grafo.GetVertice("2");
+
+            Vertice vk = grafoP.GetVertice("1");
+            Vertice vp = grafoK.GetVertice("1");
+
+            // -> PARA GRAFOS NÃO DIRECIONADO
+
+            Console.WriteLine("{0} e {1} são adjacente: {2}", v1.Id, v2.Id, grafo.IsAdjacente(v1, v2));
+            Console.WriteLine("O vértice {0} tem grau: {1}", v1.Id, grafo.GetGrau(v1));
+            Console.WriteLine("O vértice {0} é isolado: {1}", v1.Id, grafo.IsIsolado(v1));
+            Console.WriteLine("O vértice {0} é pendente: {1}", v1.Id, grafo.IsPendente(v1));
+
+            Console.WriteLine("O grafo é regular: " + grafo.IsRegular());
+            Console.WriteLine("O grafo é nulo: " + grafo.IsNulo());
+            Console.WriteLine("O grafo é completo: " + grafo.IsCompleto());
+            Console.WriteLine("O grafo é conexo: " + grafo.IsConexo());
+            Console.WriteLine("O grafo é euleriano: " + grafo.IsEuleriano());
+            Console.WriteLine("O grafo é unicursal: " + grafo.IsUnicursal());
+
+            Console.WriteLine("A quantidade de cut-vértices é: " + grafo.GetCutVertices().Count);
+            grafo.GetCutVertices().ForEach(v => Console.WriteLine(v.Id));
+
+            grafoP.GetAGMPrim(vp);
+            System.Console.WriteLine();
+            System.Console.WriteLine();
+            grafoK.GetAGMKruskal(vk);
+        }
+
+
     }
 }
