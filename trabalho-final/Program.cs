@@ -10,7 +10,7 @@ namespace grafo
     {
         static void Main(string[] args)
         {
-            string caminhoArquivo = "EntradaGrafosMaisProfessores.txt";
+            string caminhoArquivo = "arquivo.txt";
             string[] linhas = File.ReadLines("./arquivos/" + caminhoArquivo).ToArray();
 
             // string[] linhas = {
