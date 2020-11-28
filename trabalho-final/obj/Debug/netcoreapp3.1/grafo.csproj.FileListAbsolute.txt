@@ -37,3 +37,13 @@ C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\obj\
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\obj\Debug\netcoreapp3.1\grafo.dll
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\obj\Debug\netcoreapp3.1\grafo.pdb
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\obj\Debug\netcoreapp3.1\grafo.genruntimeconfig.cache
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\SkiaSharp.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\Spire.License.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\Spire.Pdf.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\Spire.XLS.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\runtimes\tizen-armel\native\libSkiaSharp.so
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\runtimes\tizen-x86\native\libSkiaSharp.so
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\trabalho-final\obj\Debug\netcoreapp3.1\grafo.csproj.CopyComplete

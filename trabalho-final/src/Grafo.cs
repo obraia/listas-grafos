@@ -17,6 +17,32 @@ namespace grafo
             Aresta.IdCount = 1;
         }
 
+        public static Grafo CriarGrafo(string[] linhas)
+        {
+            Grafo grafo = new Grafo();
+            List<Professor> professores = new List<Professor>();
+
+            linhas.ToList().ForEach(l =>
+            {
+                string[] aux = l.Split(' ');
+                professores.Add(new Professor(aux[1], aux[0], aux[2]));
+            });
+
+            professores.ForEach(p1 =>
+            {
+                // -> Retorna uma lista com todos os vértices de mesma disciplina e período de p1
+                var grupoP1 = professores.FindAll(p2 => p2.Nome == p1.Nome || p2.Periodo == p1.Periodo);
+
+                // -> Percorre a lista criando as arestas no grafo
+                grupoP1.ForEach(p3 =>
+                {
+                    if (p3 != p1) grafo.InserirAresta(p1, p3);
+                });
+            });
+
+            return grafo;
+        }
+
         // -> Insere um vértice na lista de vértices do grafo
         public void InserirProfessor(Professor p)
         {
@@ -34,7 +60,7 @@ namespace grafo
             }
         }
 
-        // -> Insere ua aresta composta por dois vértices e o peso
+        // -> Faz comparações e insere um professor no grafo
         public void InserirAresta(Professor de, Professor para)
         {
             // -> busca se os vértices já estão presentes no grafo
@@ -70,55 +96,91 @@ namespace grafo
             return p1.IsAdjacente(p2);
         }
 
+        // -> Método que visita cada vértice para fazer sua coloração coloração
+        public void ObterColoracao(Professor professor)
+        {
+            if (!(professor is null))
+            {
+                this.Professores.Remove(professor);
+                this.Professores.Insert(0, professor);
+                this.Professores.ForEach(p => this.Colorir(p));
+            }
+            else
+            {
+                Console.WriteLine("Professor não encontrado");
+            }
+        }
+
+        // -> Método que comparar cada vértices adjacentes e define sua coloração
+        private void Colorir(Professor professor)
+        {
+            int contCor = 0;
+
+            while (contCor < Cor.Cores.Length)
+            {
+                bool hasCor = professor.ListaAdjacencia.Any(a =>
+                {
+                    if ((professor.Disciplina == a.Professor.Disciplina) && a.Professor.Cor.Horario == "19:00 - 20:40")
+                    {
+                        contCor += 2;
+                    }
+                    return a.Professor.Cor == Cor.Cores[contCor];
+                });
+
+                hasCor = professor.ListaAdjacencia.Any(a => a.Professor.Cor == Cor.Cores[contCor]);
+
+                if (!hasCor)
+                {
+                    professor.SetCor(Cor.Cores[contCor]);
+                    break;
+                }
+                else contCor++;
+            }
+        }
+
+        // -> Retorna a quantidade de cores apos a colocação, e -1 caso não tenha sido classificado
+        public int ObterQuantidadeCores()
+        {
+            if (this.Professores[0].Cor.Nome == "") return -1;
+            return this.Professores.GroupBy(p => p.Cor).ToList().Count;
+        }
+
         // -> Ordena os vértice de acordo com o formado dos Ids dos vértices
         public void OrdernarProfessores()
         {
             this.Professores = this.Professores.OrderBy(p => p.Periodo)
-            .ThenBy(p => ValorDia(p.Cor.Dia)).ThenBy(p => ValorHora(p.Cor.Horario)).ToList();
+            .ThenBy(p => Cor.ValorDia(p.Cor.Dia)).ThenBy(p => Cor.ValorHora(p.Cor.Horario)).ToList();
         }
 
-        public static int ValorDia(string dia)
+        public void OrdernarProfessoresCores()
         {
-            switch (dia)
-            {
-                case "Segunda-feira": return 1;
-                case "Terça-feira": return 2;
-                case "Quarta-feira": return 3;
-                case "Quinta-feira": return 4;
-                case "Sexta-feira": return 5;
-                case "Sábado-feira": return 6;
-                default: return -1;
-            }
-        }
-
-        public static int ValorHora(string hora)
-        {
-            return int.Parse(hora.Substring(0, 2));
-        }
-
-        public static ConsoleColor ValorCor(string cor)
-        {
-            switch (cor)
-            {
-                case "Amarelo": return ConsoleColor.DarkYellow;
-                case "Azul": return ConsoleColor.Blue;
-                case "Branco": return ConsoleColor.White;
-                case "Cinza": return ConsoleColor.DarkGray;
-                case "Magenta": return ConsoleColor.Magenta;
-                case "Ciano": return ConsoleColor.Cyan;
-                case "Verde-escuro": return ConsoleColor.DarkGreen;
-                case "Vinho": return ConsoleColor.DarkRed;
-                case "Verde": return ConsoleColor.Green;
-                case "Vermelho": return ConsoleColor.Red;
-                case "Roxo": return ConsoleColor.DarkMagenta;
-                default: return ConsoleColor.White;
-            }
+            this.Professores = this.Professores.OrderBy(p => p.Cor.Nome)
+            .ThenBy(p => p.Periodo).ThenBy(p => Cor.ValorHora(p.Cor.Horario)).ToList();
         }
 
         // -> Imprime um grafo com todas suas arestas
         public void ImprimirGrafo()
         {
             this.Professores.ForEach(p => Console.Write(p));
+        }
+
+        // -> Listar professor, disciplinas e periodos com seus dias e horários
+        public void ListarProfessor()
+        {
+            this.Professores.ForEach(p =>
+            {
+                Console.ForegroundColor = Cor.ValorCor(p.Cor.Nome);
+                Console.WriteLine(p.Periodo + ": " + p.Disciplina + " - " + p.Nome + " - " + p.Cor);
+            });
+
+            Console.ResetColor();
+        }
+
+        // -> Imprime um tabela de acordo com as coloações
+        public void ImprimirTabela()
+        {
+            IPrintTabularData<Professor> professorDataPrinter = new TablePrinter<Professor>();
+            professorDataPrinter.PrintTable(this.Professores);
         }
 
         // -> Imprime uma matriz de adjacência

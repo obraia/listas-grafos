@@ -1,0 +1,5 @@
+Para executar o programa primeiramente é necessário inserir um arquivo chamado "arquivo.txt" na pasta ./arquivos que se encontra na pasta principal do projeto e em seguida digitar o seguinte comando no CMD ou shell:
+
+> dotnet run
+
+obs: Caso não seja possível, criar projeto no Visual Studio

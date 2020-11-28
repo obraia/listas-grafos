@@ -24,3 +24,16 @@ C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\grafo-base\obj\Debu
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\grafo-base\obj\Debug\netcoreapp3.1\grafo.dll
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\grafo-base\obj\Debug\netcoreapp3.1\grafo.pdb
 C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\grafo-base\obj\Debug\netcoreapp3.1\grafo.genruntimeconfig.cache
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.exe
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.deps.json
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.runtimeconfig.json
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.runtimeconfig.dev.json
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\bin\Debug\netcoreapp3.1\grafo.pdb
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.csprojAssemblyReference.cache
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.AssemblyInfoInputs.cache
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.AssemblyInfo.cs
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.csproj.CoreCompileInputs.cache
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.dll
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.pdb
+C:\Users\Bryan.Diniz\Documents\Projetos\estudo\csharp\Grafos\atividade-pratica\obj\Debug\netcoreapp3.1\grafo.genruntimeconfig.cache

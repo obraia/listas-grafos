@@ -9,10 +9,10 @@ namespace grafo
     {
         public static int CuntId = 1;
         public List<Aresta> ListaAdjacencia = new List<Aresta>();
-        public string Id { get; set; }
-        public string Nome { get; set; }
-        public string Disciplina { get; set; }
-        public int Periodo { get; set; }
+        public string Id { get; private set; }
+        public int Periodo { get; private set; }
+        public string Nome { get; private set; }
+        public string Disciplina { get; private set; }
         public Cor Cor { get; private set; }
 
         // -> Contrutor, constroi uma classe
@@ -22,40 +22,27 @@ namespace grafo
             this.Nome = nome;
             this.Disciplina = disciplina;
             this.Periodo = int.Parse(periodo);
-
+            this.Cor = new Cor("", "", "");
             CuntId++;
         }
 
+        // -> Define a cor para a coloração
         public void SetCor(Cor cor)
         {
             this.Cor = cor;
-            // this.ListaAdjacencia.ForEach(a =>  (Professor)a.Vertice.Cor = cor)
         }
 
-        // -> Adiciona um vértice a lista de adjacência, junto ao peso
+        // -> Adiciona um professor à lista de adjacência
         public void AdicionarAdjacente(Professor professor)
         {
-            // -> Adiciona uma nova aresta na lista de adjacência
             this.ListaAdjacencia.Add(new Aresta(professor));
         }
 
-        // -> Remove um vértice adjacente e todas suas arestas
+        // -> Remove um professor adjacente e todas suas arestas
         public void RemoverAdjacente(Professor p)
         {
-            // -> Remove todas as incidências de v na lista de adjacência
+            // -> Remove todas as incidências de p na lista de adjacência
             this.ListaAdjacencia.RemoveAll(a => a.Professor.Id == p.Id);
-        }
-
-        // -> Ordena a lista de vértice de acordo com o formado dos Ids dos vértices
-        public void OrdenarAdjacentes() {
-            int aux;
-
-            if(int.TryParse(this.Id, out aux)) {
-                this.ListaAdjacencia.Sort((a1, a2) => int.Parse(a1.Professor.Id) - int.Parse(a2.Professor.Id));
-            }
-            else {
-                this.ListaAdjacencia.Sort((a1, a2) => a1.Professor.Id.CompareTo(a2.Professor.Id));
-            }
         }
 
         // -> busca na lista de adjacência de um vértice se ha incidência de v
@@ -65,7 +52,7 @@ namespace grafo
             return this.ListaAdjacencia.Any(a => a.Professor.Id == p.Id);
         }
 
-        // -> Existe todos o vértices adijacentes
+        // -> Existe todos o vértices adjacentes
         public void ListarAdjacentes()
         {
             foreach (Aresta v in this.ListaAdjacencia)
@@ -74,10 +61,10 @@ namespace grafo
             }
         }
 
-        // -> retorna todas as arestas adjacêntes
+        // -> Retorna todas as arestas adjacêntes
         public List<string> GetArestas()
         {
-            return this.ListaAdjacencia.Select(a => "[" + a.Id + "] " +  this.Id + " -> " + a  + "\n").ToList();
+            return this.ListaAdjacencia.Select(a => "[" + a.Id + "] " + this.Id + " -> " + a + "\n").ToList();
         }
 
         public override string ToString()
