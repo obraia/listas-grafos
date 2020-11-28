@@ -7,23 +7,16 @@ namespace grafo
     {
         public static int IdCount = 1;
         public int Id { get; private set; }
-        public Vertice Vertice { get; private set; }
-        public int Peso { get; private set; }
-        public string TipoAresta { get; set; }
-        public Aresta(Vertice vertice, int peso)
+        public Professor Professor { get; private set; }
+        public Aresta(Professor professor)
         {
             this.Id = IdCount;
-            this.Vertice = vertice;
-            this.Peso = peso;
-        }
-
-        public void ResetAresta() {
-            this.TipoAresta = null;
+            this.Professor = professor;
         }
 
         public override string ToString()
         {
-            return this.Vertice.Id + " : " + this.Peso + " -> " + this.TipoAresta;
+            return this.Professor.Nome + " : " + this.Professor.Disciplina;
         }
     }
 }
